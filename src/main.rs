@@ -2,29 +2,25 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 mod components; // component name
-use components::test::RenderedAt;
+use components::note::Note;
+use components::error::ErrorPage;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
     #[at("/")]
-    Home,
-    #[at("/test")]
-    RenderedAt,
+    Note,
     #[not_found]
     #[at("/404")]
-    NotFound,
+    ErrorPage,
 }
 
 fn switch(route: &Route) -> Html {
     match route {
-        Route::Home => html! {
-            <h1>{ "Home" }</h1>
+        Route::Note => html! {
+            <Note content="hello" />
         },
-        Route::NotFound => html! {
-            <h1>{ "404" }</h1>
-        },
-        Route::RenderedAt => html! {
-            <RenderedAt />
+        Route::ErrorPage => html! {
+            <ErrorPage />
         }
     }
 }

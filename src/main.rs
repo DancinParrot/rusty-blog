@@ -1,14 +1,15 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-pub mod component;
+mod components; // component name
+use components::test::RenderedAt;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
     #[at("/")]
     Home,
-    #[at("/:note_id")]
-    Note { note_id: String },
+    #[at("/test")]
+    RenderedAt,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -16,8 +17,14 @@ enum Route {
 
 fn switch(route: &Route) -> Html {
     match route {
-        Route::Note { note_id } => html! {
-            <Note note_id={note_id.to_owned()} />
+        Route::Home => html! {
+            <h1>{ "Home" }</h1>
+        },
+        Route::NotFound => html! {
+            <h1>{ "404" }</h1>
+        },
+        Route::RenderedAt => html! {
+            <RenderedAt />
         }
     }
 }

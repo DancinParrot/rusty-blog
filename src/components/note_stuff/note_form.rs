@@ -1,8 +1,6 @@
 use std::clone;
-
 use yew::prelude::*;
 use chrono::{DateTime, Utc};
-use gloo_console::log;
 use crate::components::note::form_components::textarea::Textarea;
 use crate::components::note::form_components::button_new::ButtonNew;
 

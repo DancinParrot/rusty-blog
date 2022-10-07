@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-#[derive(Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, PartialEq, serde::Serialize, serde::Deserialize, Debug)]
 pub struct Note {
     pub note_id: String,
     pub content: String,

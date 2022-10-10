@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-#[derive(Clone, PartialEq, serde::Serialize, serde::Deserialize, Debug)]
+#[derive(Clone, PartialEq, serde::Serialize, serde::Deserialize, Debug, Default)]
 pub struct Note {
     pub note_id: String,
     pub content: String,
@@ -70,7 +70,6 @@ pub fn note_list(NoteListProps { notes, on_click }: &NoteListProps) -> Html {
             </a>
         }
     }).collect()
-
 }
 
 impl Note {

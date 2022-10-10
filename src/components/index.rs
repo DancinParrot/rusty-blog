@@ -62,7 +62,12 @@ pub fn index() -> Html {
         <section>
             <div class="h-screen sm:grid sm:grid-cols-5">
                 <div class="h-full sm:col-span-2 xl:col-span-1 bg-[#2A9D8F] px-4 py-4 overflow-auto">
-                    <h1 class="text-2xl my-5 text-white">{ "Notebook" }</h1>
+                    <div class="grid grid-cols-2">
+                        <h1 class="text-2xl my-5 text-white">{ "Notebook" }</h1>
+                        <div class="flex justify-end items-center">
+                            <button class="font-bold text-center text-4xl  rounded px-8 text-white">{"+"}</button>
+                        </div>
+                    </div>
                     <NoteList notes={notes} on_click={handle_onclick.clone()} /> 
                 </div>
                 <div hidden={hidden} class="sm:z-1 sm:block sm:col-span-3 xl:col-span-4 px-12 py-12">
@@ -73,7 +78,7 @@ pub fn index() -> Html {
                                     <div class="text-center">
                                         <h2 class="text-2xl font-medium">{ "There's nothing here..." }</h2>
                                         <p class="mt-4 text-sm text-gray-500">
-                                            { "Empty.. Try selecting or create a new note! " }
+                                            { "Empty.. Try selecting or creating a new note! " }
                                         </p>
 
                                         <a

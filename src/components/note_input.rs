@@ -3,6 +3,10 @@ use yew::prelude::*;
 use crate::components::note::Note;
 use crate::components::note_form::text_input::TextInput;
 use crate::components::note_form::textarea::Textarea;
+use yew_router::prelude::*;
+use crate::router::Route;
+
+use super::note;
 
 #[derive(Clone, Properties, PartialEq)]
 pub struct NoteDetailsProps {
@@ -15,7 +19,7 @@ pub struct NoteDetailsProps {
 #[function_component(NoteInput)]
 pub fn note_input(props: &NoteDetailsProps) -> Html {
 
-    // let note_state = use_state(|| Note::default());
+    // Set state for persistency
     let note_state = use_state(|| Note::default());
 
     let note = props.note.clone();
@@ -82,7 +86,7 @@ pub fn note_input(props: &NoteDetailsProps) -> Html {
                     }
                 </div> 
                 <div class="mt-4">
-                    <Textarea content={ note_state.deref().clone().content } on_change = { content_changed } />
+                    <Textarea value={ note.content } on_change = { content_changed } />
                 </div>
             </form>
         </div>

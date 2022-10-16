@@ -1,39 +1,54 @@
 use yew::prelude::*;
 use crate::components::note::*;
 use crate::components::note_input::*;
+use crate::components::api::NoteResponse;
 
 // Root element to display all components
 #[function_component(Index)]
 pub fn index() -> Html {
-    let notes: Vec<Note> = vec![
-        Note {
-            note_id: String::from("1"),
-            content: String::from("Hello World!"),
-            title: String::from("Note 1"),
-            tags: vec![String::from("tag1"), String::from("tag3")],
-        },
-        Note {
-            note_id: String::from("2"),
-            content: String::from("Hello from Mars!"),
-            title: String::from("Note 2"),
-            tags: vec![String::from("tag1"), String::from("tag3")],
-        }, 
-        Note {
-            note_id: String::from("3"),
-            content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
-            title: String::from("Note 3"),
-            tags: vec![String::from("tag4"), String::from("tag5")],
-        },
-        Note {
-                    note_id: String::from("3"),
-                    content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
-                    title: String::from("Note 3"),
-                    tags: vec![String::from("tag4"), String::from("tag5")],
-        }
+    let mut notes: Vec<Note> = vec![
+        // Note {
+        //     note_id: String::from("1"),
+        //     content: String::from("Hello World!"),
+        //     title: String::from("Note 1"),
+        //     tags: vec![String::from("tag1"), String::from("tag3")],
+        // },
+        // Note {
+        //     note_id: String::from("2"),
+        //     content: String::from("Hello from Mars!"),
+        //     title: String::from("Note 2"),
+        //     tags: vec![String::from("tag1"), String::from("tag3")],
+        // }, 
+        // Note {
+        //     note_id: String::from("3"),
+        //     content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
+        //     title: String::from("Note 3"),
+        //     tags: vec![String::from("tag4"), String::from("tag5")],
+        // },
+        // Note {
+        //             note_id: String::from("3"),
+        //             content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
+        //             title: String::from("Note 3"),
+        //             tags: vec![String::from("tag4"), String::from("tag5")],
+        // }
     ];
+
+    // Component state
+    let is_loaded = use_state(|| false);
+
+    // use_effect(move || {
+    //     if !*is_loaded {
+    //         let is_loaded = is_loaded.clone();
+
+    //         wasm_bindgen_futures::spawn_local(async move {
+    //             match NoteResponse::get_all_notes()
+    //         })
+    //     }
+    // })
 
     let selected_note = use_state(|| None);
     let mut hidden: bool = true; 
+
     // Handle onclick events, will set the selected note variable
     let handle_onclick = {
         let selected_note = selected_note.clone();

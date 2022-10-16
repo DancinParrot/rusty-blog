@@ -3,10 +3,6 @@ use yew::prelude::*;
 use crate::components::note::Note;
 use crate::components::note_form::text_input::TextInput;
 use crate::components::note_form::textarea::Textarea;
-use yew_router::prelude::*;
-use crate::router::Route;
-
-use super::note;
 
 #[derive(Clone, Properties, PartialEq)]
 pub struct NoteDetailsProps {
@@ -19,8 +15,9 @@ pub struct NoteDetailsProps {
 #[function_component(NoteInput)]
 pub fn note_input(props: &NoteDetailsProps) -> Html {
 
-    // Set state for persistency
-    let note_state = use_state(|| Note::default());
+    // Set states for persistency
+    let title_state = use_state(|| None);
+    let content_state = use_state(|| None);
 
     let note = props.note.clone();
 
@@ -36,24 +33,23 @@ pub fn note_input(props: &NoteDetailsProps) -> Html {
     
 
     // Handle text input for note title
-    let cloned_state = note_state.clone();
 
-    let title_changed = Callback::from(move |title| {
-        cloned_state.set(Note {
-            title,
-            ..cloned_state.deref().clone()
+    let title_changed = {
+        let title_state = title_state.clone();
+
+        Callback::from(move |title| {
+            title_state.set(Some(title))
         })
-    });
+    };
 
     // Handle text input for note content
-    let cloned_state = note_state.clone();
+    let content_changed = {
+        let content_state = content_state.clone();
 
-    let content_changed = Callback::from(move |content| {
-        cloned_state.set(Note {
-            content,
-            ..cloned_state.deref().clone()
+        Callback::from(move |content| {
+            content_state.set(Some(content))
         })
-    });
+    };
 
     // Handle save button event
 
@@ -65,7 +61,15 @@ pub fn note_input(props: &NoteDetailsProps) -> Html {
         <div class="sm:z-1">
             <form class="flex flex-col">
                 <div class="sm:grid sm:grid-cols-2">
-                    <TextInput value={ note.title } on_change={ title_changed } />
+                    <TextInput 
+                    value={ 
+                        if title_state.deref().is_some() { 
+                            title_state.deref().clone().unwrap()
+                        } else {
+                            note.title.clone()
+                        }
+                    } 
+                    on_change={ title_changed } />
                     // <input type="text" class="text-4xl" value={ note.title } onchange={on_note_submit} />
                     <div class="flex justify-end space-x-2">
                         <button class="inline-block rounded border border-[#2A9D8F] bg-[#2A9D8F] px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-[#2A9D8F] focus:outline-none focus:ring active:text-[#2A9D8F]">{ "Save" }</button> // onclick will send an api request to update note
@@ -74,7 +78,7 @@ pub fn note_input(props: &NoteDetailsProps) -> Html {
                 </div>
                 <div class="mt-4">
                     {
-                        note_state.tags.iter().map(|tag| {
+                        note.tags.iter().map(|tag| {
                             html! {
                                 <span
                                     class="rounded-full bg-gray px-3 py-1.5 text-xs font-medium text-black"
@@ -86,7 +90,15 @@ pub fn note_input(props: &NoteDetailsProps) -> Html {
                     }
                 </div> 
                 <div class="mt-4">
-                    <Textarea value={ note.content } on_change = { content_changed } />
+                    <Textarea 
+                    value={  
+                        if content_state.deref().is_some() { 
+                            content_state.deref().clone().unwrap()
+                        } else {
+                            note.content.clone()
+                        }
+                    }
+                    on_change = { content_changed } />
                 </div>
             </form>
         </div>

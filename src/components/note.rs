@@ -1,11 +1,12 @@
 use yew::prelude::*;
+use gloo_console::log;
 
 #[derive(Clone, PartialEq, serde::Serialize, serde::Deserialize, Debug, Default)]
 pub struct Note {
     pub note_id: String,
     pub content: String,
     pub title: String,
-    pub tags: Vec<String>, 
+    pub tags: Vec<String>,
 }
 
 struct Tag {
@@ -35,6 +36,7 @@ pub fn note_list(NoteListProps { notes, on_click }: &NoteListProps) -> Html {
             let on_click = on_click.clone();
             let note = note.clone();
             Callback::from(move |_| {
+                log!("Selected note:", note.clone().title);
                 on_click.emit(note.clone())
             })
         };
@@ -70,25 +72,4 @@ pub fn note_list(NoteListProps { notes, on_click }: &NoteListProps) -> Html {
             </a>
         }
     }).collect()
-}
-
-impl Note {
-
-    pub fn get_all_notes(notes: &Vec<Note>) {
-
-    }
-
-    // Take in mutable reference of note
-    pub fn get_note(note: &mut Note) {
-
-    }
-
-    pub fn update_note(note: &Note) -> bool {
-        false
-    }
-
-    // Returns true on success and vice versa
-    pub fn delete_note(note: &Note) -> bool {
-        false
-    }
 }

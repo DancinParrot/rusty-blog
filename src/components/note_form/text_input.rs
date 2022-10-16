@@ -18,7 +18,6 @@ pub fn text_input(props: &Props) -> Html {
     let is_loaded = use_state(|| false);
 
     let onchange = {
-        
         let on_change = props.on_change.clone();
         let state = state.clone();
 

@@ -7,30 +7,30 @@ use crate::components::api::NoteResponse;
 #[function_component(Index)]
 pub fn index() -> Html {
     let mut notes: Vec<Note> = vec![
-        // Note {
-        //     note_id: String::from("1"),
-        //     content: String::from("Hello World!"),
-        //     title: String::from("Note 1"),
-        //     tags: vec![String::from("tag1"), String::from("tag3")],
-        // },
-        // Note {
-        //     note_id: String::from("2"),
-        //     content: String::from("Hello from Mars!"),
-        //     title: String::from("Note 2"),
-        //     tags: vec![String::from("tag1"), String::from("tag3")],
-        // }, 
-        // Note {
-        //     note_id: String::from("3"),
-        //     content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
-        //     title: String::from("Note 3"),
-        //     tags: vec![String::from("tag4"), String::from("tag5")],
-        // },
-        // Note {
-        //             note_id: String::from("3"),
-        //             content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
-        //             title: String::from("Note 3"),
-        //             tags: vec![String::from("tag4"), String::from("tag5")],
-        // }
+        Note {
+            note_id: String::from("1"),
+            content: String::from("Hello World!"),
+            title: String::from("Note 1"),
+            tags: vec![String::from("tag1"), String::from("tag3")],
+        },
+        Note {
+            note_id: String::from("2"),
+            content: String::from("Hello from Mars!"),
+            title: String::from("Note 2"),
+            tags: vec![String::from("tag1"), String::from("tag3")],
+        }, 
+        Note {
+            note_id: String::from("3"),
+            content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
+            title: String::from("Note 3"),
+            tags: vec![String::from("tag4"), String::from("tag5")],
+        },
+        Note {
+                    note_id: String::from("3"),
+                    content: String::from("Hello from MarsHello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!Hello from Mars!!"),
+                    title: String::from("Note 3"),
+                    tags: vec![String::from("tag4"), String::from("tag5")],
+        }
     ];
 
     // Component state

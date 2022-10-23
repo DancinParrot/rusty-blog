@@ -31,15 +31,15 @@ You may only need to focus on the following folders for dev and deployment.
 |./src|Contains the project's source code.|
 |./src/components|Reusable Yew components.|
 
-The `./src/components` directory contains all the components used to run the Yew app, such as API, and index components. <br>
-The `router.rs` file contains all routes within the Yew web application. <br>
+The `./src/components` directory contains all the components used to run the Yew app, such as API, and index components. <br> <br>
+The `router.rs` file contains all routes within the Yew web application. <br> <br>
 You may also see multiple `mod.rs` files which are used to allow importing of various `.rs` components across the project scope.
 
 ## Development Deployment 
 Before deploying, ensure that the backend is being deployed in a seperate port to avoid collision.
-<br>
-Serve the Yew app via the command `trunk serve`.
-<br>
+<br> <br>
+Serve the Yew app via the command `trunk serve` in the project's root directory, `./`.
+<br> <br>
 To auto-populate the CSS file with styles, simply run `npx tailwindcss -i ./input.css -o ./src/output.css --watch`, as TailwindCSS
 will only include the CSS classes that are used in the project.
 

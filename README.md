@@ -11,6 +11,7 @@ Ensure the following services and tools are setup before deploying the app.
 - PostgreSQL Database
 - Node.js
 - TailwindCSS
+- wasm-bindgen-cli
 
 ## Yew Setup
 Follow the official [Yew guide](https://yew.rs/docs/getting-started/introduction) to setup the project and install the pre-requisites.
@@ -43,3 +44,10 @@ Serve the Yew app via the command `trunk serve` in the project's root directory,
 To auto-populate the CSS file with styles, simply run `npx tailwindcss -i ./input.css -o ./src/output.css --watch`, as TailwindCSS
 will only include the CSS classes that are used in the project.
 
+## Troubleshoot
+### trunk serve command not found
+One cause of this would be that trunk, or rather Cargo's path has not been added to the system path, simply add the `~/.cargo/bin` directory to the path, and you can executae any tools installed via Cargo.
+
+On Arch Linux:
+Add the following to your .bashrc (depends on your shell, i.e. .zshrc for zsh)
+`export PATH=$PATH:~/.cargo/bin`
